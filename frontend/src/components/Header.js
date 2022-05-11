@@ -11,7 +11,7 @@ import {
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store";
-export const Header = () => {
+const Header = () => {
   const dispath = useDispatch();
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
   const [value, setValue] = useState();
@@ -79,3 +79,5 @@ export const Header = () => {
     </AppBar>
   );
 };
+
+export default Header;

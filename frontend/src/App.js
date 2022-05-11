@@ -1,14 +1,23 @@
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-import { AddBlog } from "./components/AddBlog";
 import { Auth } from "./components/Auth";
-import { BlogDetail } from "./components/BlogDetail";
-import { Blogs } from "./components/Blogs";
-import { Header } from "./components/Header";
-import { UserBlogs } from "./components/UserBlogs";
+import AddBlog from "./components/AddBlog";
+import BlogDetail from "./components/BlogDetail";
+import Blogs from "./components/Blogs";
+import Header from "./components/Header";
+import UserBlogs from "./components/UserBlogs";
+import { authActions } from "./store";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.isLoggedIn);
+
+  const dispath = useDispatch();
+  useEffect(() => {
+    if (localStorage.getItem("userId")) {
+      dispath(authActions.login());
+    }
+  }, [dispath]);
   return (
     <>
       <header>
